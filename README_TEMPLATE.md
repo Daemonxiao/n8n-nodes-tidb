@@ -25,9 +25,9 @@ Create a [TiDB Cloud](https://tidbcloud.com/) account.
 5. Click on the ***Create API Key*** button to create a new API Key.
 6. Use these ***API Keys*** with your TiDB Cloud node credentials in n8n.
 
-![Getting TiDB Cloud credentials](/images/getting-credentials.gif)
+For more information,	see [TiDB Cloud API Overview](https://docs.pingcap.com/tidbcloud/api-overview/).
 
-## Operations
+## Supported Operations
 
 - Create TiDB Serverless clusters
 - Execute SQL in TiDB Cloud
@@ -37,7 +37,7 @@ Create a [TiDB Cloud](https://tidbcloud.com/) account.
 
 ## Usage
 
-Here is an example usage, click [here]() to find more information.
+Here is an example usage, click [here](/doc/example_usage.md) to find more information.
 
 ## Resources
 

@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-tidb-cloud",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "TiDB Cloud - n8n integration node",
   "keywords": [
     "n8n-community-node-package",
@@ -8,14 +8,14 @@
     "TiDB Cloud"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Daemonxiao/n8n-nodes-tidb.git#readme",
+  "homepage": "https://github.com/Daemonxiao/n8n-nodes-tidb-cloud.git#readme",
   "author": {
     "name": "Qiang Wu",
     "email": "qiang.wu@pingcap.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Daemonxiao/n8n-nodes-tidb.git"
+    "url": "https://github.com/Daemonxiao/n8n-nodes-tidb-cloud.git"
   },
   "main": "index.js",
   "scripts": {
@@ -32,12 +32,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/TiDBCloudApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/TiDBCloud/TiDBCloud.node.js"
     ]
   },
   "devDependencies": {
@@ -46,11 +44,15 @@
     "@typescript-eslint/parser": "^5.36",
     "eslint-plugin-n8n-nodes-base": "^1.11.0",
     "gulp": "^4.0.2",
+    "mysql2": "~2.3.0",
     "n8n-core": "*",
     "n8n-workflow": "*",
     "prettier": "^2.7.1",
     "tslint": "^6.1.2",
-    "typescript": "~4.8.4",
-    "mysql2": "~2.3.0"
+    "typescript": "~4.8.4"
+  },
+  "dependencies": {
+    "mysql2": "~2.3.0",
+    "n8n": "^0.204.0"
   }
 }
