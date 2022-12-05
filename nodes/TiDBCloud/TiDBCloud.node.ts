@@ -41,7 +41,6 @@ export class TiDBCloud implements INodeType {
 			{
 				name: 'tiDBCloudApi',
 				required: true,
-				testedBy: 'tidbCloudConnectionTest',
 			},
 		],
 		properties: [
@@ -195,6 +194,7 @@ export class TiDBCloud implements INodeType {
 					},
 				},
 				noDataExpression: true,
+				description: 'Select the region where you want to create your cluster',
 				options: [
 					{
 						name: 'Frankfurt (Eu-Central-1)',
@@ -229,10 +229,26 @@ export class TiDBCloud implements INodeType {
 				},
 				displayOptions: {
 					show: {
-						operation: ['executeSQL', 'insert', 'update', 'delete', 'createServerlessCluster'],
+						operation: ['executeSQL', 'insert', 'update', 'delete'],
 					},
 				},
 				default: '',
+			},
+
+			{
+				displayName: 'Password',
+				name: 'password',
+				type: 'string',
+				typeOptions: {
+					password: true,
+				},
+				displayOptions: {
+					show: {
+						operation: ['createServerlessCluster'],
+					},
+				},
+				default: '',
+				description: 'Set your new cluster password',
 			},
 
 			// ----------------------------------
