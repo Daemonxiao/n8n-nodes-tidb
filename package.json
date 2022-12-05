@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-tidb-cloud",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TiDB Cloud - n8n integration node",
   "keywords": [
     "n8n-community-node-package",
@@ -12,10 +12,6 @@
   "author": {
     "name": "Qiang Wu",
     "email": "qiang.wu@pingcap.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Daemonxiao/n8n-nodes-tidb-cloud.git"
   },
   "main": "index.js",
   "scripts": {
@@ -53,6 +49,6 @@
   },
   "dependencies": {
     "mysql2": "~2.3.0",
-    "n8n": "^0.204.0"
+    "urllib": "~2.40.0"
   }
 }

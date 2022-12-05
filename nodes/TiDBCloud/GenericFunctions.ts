@@ -8,7 +8,7 @@ import {
 
 import mysql2 from 'mysql2/promise';
 import {IExecuteFunctions} from "n8n-core";
-import {OptionsWithUri} from 'request';
+import { HttpMethod, request, RequestOptions } from 'urllib';
 
 /**
  * Returns of copy of the items which only contains the json data and
@@ -36,7 +36,7 @@ export function copyInputItems(items: INodeExecutionData[], properties: string[]
 export async function tiDBCloudApiRequest(
 	this: IExecuteFunctions | ILoadOptionsFunctions,
 	uri: string,
-	method: string,
+	method: HttpMethod,
 	// tslint:disable-next-line:no-any
 	headers: any = {},
 	// tslint:disable-next-line:no-any
@@ -54,26 +54,27 @@ export async function tiDBCloudApiRequest(
 		privateKey = tiDBCloudAuth.privateKey;
 	}
 
-	const options: OptionsWithUri = {
+	const options: RequestOptions = {
 		method,
 		headers,
-		uri,
-		json: true,
-		auth: {
-			user: publicKey as string,
-			pass: privateKey as string,
-			sendImmediately: false,
-		},
-		body,
+		digestAuth: publicKey + ':' +privateKey,
+		contentType: 'json',
+		dataType: 'json',
+		data: body,
 	};
 
-	return await this.helpers.request!(options);
+	const response = await request(uri, options);
+	if (response.status !== 200) {
+		throw new Error(JSON.stringify(response.data));
+	}
+
+	return response.data as unknown as IDataObject;
 }
 
 export async function tiDBCloudAuth(this: ICredentialTestFunctions, credentialForTest: ICredentialDataDecryptedObject) {
 	const tiDBCloudAuthUrl = 'https://api.tidbcloud.com/api/v1beta/projects';
 	// @ts-ignore
-	return await tiDBCloudApiRequest.call(this, tiDBCloudAuthUrl, 'GET', credentialForTest);
+	return await tiDBCloudApiRequest.call(this, tiDBCloudAuthUrl, 'GET', {}, {}, credentialForTest);
 }
 
 export async function searchProject(this: ILoadOptionsFunctions): Promise<INodeListSearchResult> {
